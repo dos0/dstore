@@ -1,0 +1,21 @@
+{
+  "name": "dos0/store",
+  "description": "dos0 store",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Serhii Dolhopolov",
+      "email": "do_s@ukr.net"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "dos0/framework": "dev-DI"
+  },
+  "repositories": [
+    {
+      "type": "path",
+      "url": "/home/do_s/mindk/final/dframe"
+    }
+  ]
+}
