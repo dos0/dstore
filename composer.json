@@ -10,7 +10,7 @@
   ],
   "minimum-stability": "dev",
   "require": {
-    "dos0/framework": "dev-DI"
+    "dos0/framework": "dev-dev"
   },
   "repositories": [
     {
