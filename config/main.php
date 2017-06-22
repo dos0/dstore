@@ -4,6 +4,10 @@ return [
     'render' => [
         'userViewPath' => __DIR__ . '/../src/Views',
     ],
+    'path' => [
+        'public' => __DIR__ . '/../public',
+        'media' => __DIR__ . '/../public/media',
+    ],
     'database' => [
         'driver' => 'pgsql',
         'host' => 'localhost',
