@@ -2,25 +2,30 @@
 
 namespace App\Controller;
 
-use App\Model\BlogModel;
-use App\Model\UserModel;
 use Dos0\Framework\Controller\Controller;
 
+/**
+ * Class BackendController
+ * @package App\Controller
+ */
 class BackendController extends Controller
 {
-    public function index()
+    /**
+     * Index action
+     *
+     * @return string
+     */
+    public function index(): string
     {
-        /* @var BlogModel $blog */
-        $blog = new BlogModel();
-        /* @var UserModel $user */
-        $username = new UserModel();
+        $text =         '<h3> Method:' . __METHOD__ . '</h3>';
+        $text .=        '<p><b>Lorem Ipsum</b> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>';
 
-        debug($blog->findAll());
-        debug($username->findAll());
+        $params = [
+            'header' => 'This is ' . __CLASS__,
+            'text'   => $text
+        ];
 
-
-
-        //return $this->render('blog/list.html', ['articles' => $model->get()]);
+        return $this->render('index.html.php', $params);
     }
 
 }
