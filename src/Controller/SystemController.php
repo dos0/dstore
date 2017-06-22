@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Model\Foo;
 use Dos0\Framework\Controller\Controller;
 use Dos0\Framework\DI\DIInjector;
+use Dos0\Framework\Validator\Validator;
 
 /**
  * Class SystemController
@@ -12,6 +14,53 @@ use Dos0\Framework\DI\DIInjector;
 class SystemController extends Controller
 {
     private $metaTitle = 'SystemController';
+
+    public function getValid()
+    {
+        $model = new Foo();
+
+        return $this->getValidContent($model);
+    }
+
+    public function getInvalid()
+    {
+        $model = new Foo();
+
+        // Fill incorrect data
+        $model->price = 99999999999;
+        $model->email = 'inCorect';
+        $model->code = 'akjsebf32434';
+
+        return $this->getValidContent($model);
+    }
+
+    private function getValidContent($model)
+    {
+        $validator = new Validator($model, $model->getRules());
+
+        $validationResult = 'Validation result: ';
+
+        if ($validator->validate()) {
+            $validationResult .= 'All is Valid';
+            $preCodeError = '';
+        } else {
+            $validationResult .= 'We have invalid params';
+            $preCodeError = $validator->getErrors();
+        }
+
+        $params = [
+            'metaTitle'             => $this->metaTitle,
+            'header'                => 'This is ' . __CLASS__,
+            'validationResult'      => $validationResult,
+            'model'               => print_r($model, true),
+            'preCodeError'          => print_r($preCodeError, true),
+        ];
+
+        return $this->render('system/valid.html.php', $params);
+    }
+
+
+
 
     /**
      * getServices action
